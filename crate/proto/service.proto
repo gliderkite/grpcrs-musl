@@ -1,0 +1,6 @@
+syntax = "proto3";
+package artichok;
+service RunnerCd {
+  rpc Run (Empty) returns (Empty);
+}
+message Empty { }

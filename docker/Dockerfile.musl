@@ -1,0 +1,30 @@
+FROM debian:stretch-slim
+
+RUN apt-get update && \
+    apt-get install -y \
+    autoconf \
+    automake \
+    busybox-static \
+    bzip2 \
+    ca-certificates \
+    cmake \
+    curl \
+    g++ \
+    gawk \
+    gcc \
+    git \
+    libpq-dev \
+    libssl-dev \
+    libtool \
+    make \
+    patch \
+    pkgconf \
+    unzip \
+    wget \
+    xutils-dev && \
+    apt-get purge -y --auto-remove
+
+RUN cd /tmp && \
+    git clone https://github.com/GregorR/musl-cross.git && \
+    cd musl-cross && GCC_BUILTIN_PREREQS=yes ./build.sh && \
+    cd .. && rm -r musl-cross
